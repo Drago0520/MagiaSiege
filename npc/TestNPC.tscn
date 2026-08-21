@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://bf4iah4bmvepo"]
+
+[ext_resource type="PackedScene" uid="uid://dyn4dqnx7qccp" path="res://npc/npc.tscn" id="1_p76ow"]
+[ext_resource type="PackedScene" uid="uid://bvoha80et32ug" path="res://npc/capture_point.tscn" id="2_njkjl"]
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_g4v7s"]
+vertices = PackedVector3Array(-7.5164566, 0.4551066, -7.511303, -7.5164566, 0.4551066, 7.488697, 7.4835434, 0.4551066, 7.488697, 7.4835434, 0.4551066, -7.511303)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_g4v7s"]
+
+[sub_resource type="HeightMapShape3D" id="HeightMapShape3D_g4v7s"]
+map_width = 3
+map_depth = 3
+map_data = PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
+
+[node name="Node3D" type="Node3D" unique_id=1138881115]
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=436058419]
+transform = Transform3D(-1, -8.742278e-08, 0, -3.821371e-15, 4.371139e-08, 1, -8.742278e-08, 1, -4.371139e-08, 0, 14.923, 0)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1424074399]
+transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 0, 0)
+shadow_enabled = true
+
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1804967672]
+transform = Transform3D(1.0000001, -1.4608759e-10, 0, -1.4614443e-10, 1.0000001, 0, 0, 0, 1.0000001, 0, 9.313226e-10, -4.656613e-10)
+navigation_mesh = SubResource("NavigationMesh_g4v7s")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="NavigationRegion3D" unique_id=807263600]
+transform = Transform3D(8, 0, 0, 0, 8, 0, 0, 0, 8, -0.0004460215, -0.009634018, 0.004761219)
+mesh = SubResource("PlaneMesh_g4v7s")
+skeleton = NodePath("../..")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="NavigationRegion3D/MeshInstance3D2" unique_id=1307138777]
+transform = Transform3D(1, -2.4851943e-10, 0, 2.1725555e-10, 1.0000001, 2.910383e-11, 2.3283064e-10, 0, 1.0000001, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NavigationRegion3D/MeshInstance3D2/StaticBody3D" unique_id=768157444]
+transform = Transform3D(1, 2.1714186e-10, 0, 2.1708502e-10, 0.99999994, 0, -2.3283064e-10, 0, 0.99999994, 0, 0, 0)
+shape = SubResource("HeightMapShape3D_g4v7s")
+
+[node name="NPCBlue" parent="." unique_id=651721336 node_paths=PackedStringArray("capture_points") instance=ExtResource("1_p76ow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.1916294, 1.2098594, 5.1842046)
+capture_points = [NodePath("../CapturePoint"), NodePath("../CapturePoint2")]
+debug_paint_team_color = true
+
+[node name="NPCBlue2" parent="." unique_id=131586399 node_paths=PackedStringArray("capture_points") instance=ExtResource("1_p76ow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.772899, 0.9137349, 4.1546454)
+capture_points = [NodePath("../CapturePoint"), NodePath("../CapturePoint2")]
+debug_paint_team_color = true
+
+[node name="CapturePoint" parent="." unique_id=1068191810 instance=ExtResource("2_njkjl")]
+transform = Transform3D(0.0013185298, 0, -0.9999991, 0, 1, 0, 0.9999991, 0, 0.0013185298, 4.894, 0, -4.793)
+
+[node name="CapturePoint2" parent="." unique_id=243842588 instance=ExtResource("2_njkjl")]
+transform = Transform3D(0.0013185298, 0, -0.9999991, 0, 1, 0, 0.9999991, 0, 0.0013185298, -4.136633, 0, 3.4616709)
+
+[node name="NPCRed" parent="." unique_id=342656491 node_paths=PackedStringArray("capture_points") instance=ExtResource("1_p76ow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.184131, 1.1782789, -5.9109287)
+team = 1
+capture_points = [NodePath("../CapturePoint"), NodePath("../CapturePoint2")]
+debug_paint_team_color = true
+
+[node name="NPC2Red2" parent="." unique_id=654741267 node_paths=PackedStringArray("capture_points") instance=ExtResource("1_p76ow")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.2768826, 0.89189386, -4.5975275)
+team = 1
+capture_points = [NodePath("../CapturePoint"), NodePath("../CapturePoint2")]
+debug_paint_team_color = true

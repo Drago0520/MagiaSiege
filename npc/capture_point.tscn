@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://bvoha80et32ug"]
+
+[ext_resource type="Script" uid="uid://dl67rup3a1eex" path="res://npc/capture_point.gd" id="1_qf0cd"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_g4v7s"]
+top_radius = 3.0
+bottom_radius = 3.0
+height = 0.01
+
+[node name="CapturePoint" type="Node3D" unique_id=1068191810]
+script = ExtResource("1_qf0cd")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1147327543]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.00050002337, 0)
+mesh = SubResource("CylinderMesh_g4v7s")
+
+[node name="Label3D" type="Label3D" parent="." unique_id=1202558673]
+offset = Vector2(0, 750)
+text = "Point A
+"
+font_size = 48

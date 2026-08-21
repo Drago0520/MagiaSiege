@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://dyn4dqnx7qccp"]
+
+[ext_resource type="Script" uid="uid://dfvd5c2kr48kt" path="res://npc/npcbase.gd" id="1_2xp5l"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_g4v7s"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_yf5fn"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_57qmd"]
+radius = 2.0
+
+[node name="NPC" type="CharacterBody3D" unique_id=651721336]
+script = ExtResource("1_2xp5l")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=905154456]
+shape = SubResource("SphereShape3D_g4v7s")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1321357786]
+mesh = SubResource("SphereMesh_yf5fn")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=348100203]
+
+[node name="VisionArea" type="Area3D" parent="." unique_id=1918785263]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="VisionArea" unique_id=1310666543]
+shape = SubResource("SphereShape3D_57qmd")
+
+[connection signal="body_entered" from="VisionArea" to="." method="_on_vision_area_body_entered"]
+[connection signal="body_exited" from="VisionArea" to="." method="_on_vision_area_body_exited"]
